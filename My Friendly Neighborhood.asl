@@ -85,5 +85,5 @@ isLoading
 
 reset
 {
-	return current.Time == 0f && old.Time > 0f;
+	return current.Time == 0f && current.activeScene == "IntroScene";
 }
