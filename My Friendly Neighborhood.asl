@@ -12,7 +12,7 @@ state("My Friendly Neighborhood")
 
 startup
 {
-   Assembly.Load(File.ReadAllBytes("Components/asl-help")).CreateInstance("Unity");
+    Assembly.Load(File.ReadAllBytes("Components/asl-help")).CreateInstance("Unity");
     vars.Helper.GameName = "My Friendly Neighborhood";
     vars.Helper.LoadSceneManager = true;
     vars.Helper.AlertLoadless();
@@ -21,7 +21,7 @@ startup
 	{"MainMenu","BackToMenuScene"};
 	
 	vars.DoorCSplits = new List<string>()
-	{"Pearl's Rolodexer Room","Pearl's Sound Stage","Pearl's Sound Stage-MainBuildingInside","RaysMainAtrium","RaysFixinsRoom","Ray'sDocks4","Ray'sDocks2","GobblesOfficesEntrance","Gobbles Projection Room2","Gobbles Studio","Gobbles Bare Room Offices","Gobbles Art Storage","Gobbles Elevator Maintenance","GobblesOfficesEntrance-CEOOffice","Exterior-HedgeMaze","Exterior-GreenhouseInterior","Gobbles Sound Studio","RaysFilmArchives","Penthouse Entrance","Elmer's Two Side Room","PenthouseBackHall2","Exterior-Antenna","Unfriendly Neighborhood Proper"};
+	{"Pearl's Rolodexer Room","Pearl's Sound Stage","Pearl's Sound Stage-MainBuildingInside","RaysMainAtrium","RaysFixinsRoom","Ray'sDocks4","Ray'sDocks2","GobblesOfficesEntrance","Gobbles Projection Room2","Gobbles Studio","Gobbles Bare Room Offices","Gobbles Art Storage","Gobbles Elevator Maintenance","GobblesOfficesEntrance-CEOOffice","Exterior-HedgeMaze","Exterior-GreenhouseInterior","Gobbles Sound Studio","RaysFilmArchives","PenthouseEntrance","Elmer's Two Side Room","PenthouseBackHall2","Exterior-Antenna","Unfriendly Neighborhood Proper"};
 	
 	vars.DoorCSettings = new List<string>()
 	{"Rolodexer Room (Handgun Room)","Sound Stage (Town Square)","Stage Main Building (Middle Building)","Underground Atrium","Fixins Room (Power Source)","Dock 4","Dock 2 (Boltcutters)","Office Entrance","Theater Room","Studio (Game Piece)","Bare Room Office (Angry Mask)","Art Storage","Elevator Maintenence Room","CEO Office","Garden Maze","Greenhouse Interior","Sound Studio","Film Archives","Penthouse Entrance","Hexagonal Key Room","Penthouse Art Hall","Roof","Unfriendly Neighbourhood Arena"};
@@ -48,7 +48,6 @@ init
         var spd = mono["SpeedrunData"];						//Information about the games Speedrun mode
                 
         vars.Helper["Time"] = spd.Make<float>("timer");				//The games speedrun timer as a float
-	vars.Helper["Fin"] = spd.Make<bool>("finished");			//Bool that tracks when the game is complete?
 
         return true; 
     });
@@ -100,7 +99,7 @@ split
 			}
 		}
 	
-	if(current.Fin && !old.Fin){
+	if(current.activeScene == "EndingA" && old.activeScene != "EndingA" || current.activeScene == "EndingB" && old.activeScene != "EndingB"){
 		return true;
 	}
 }
