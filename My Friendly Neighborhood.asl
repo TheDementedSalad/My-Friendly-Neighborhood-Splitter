@@ -35,12 +35,6 @@ init
         vars.Helper["Time"] = spd.Make<float>("timer");				//The games speedrun timer as a float
 		vars.Helper["Fin"] = spd.Make<bool>("finished");			//Bool that tracks when the game is complete?
 		
-		//Testing purposes
-		
-		//vars.Helper["Inven"] = inv.MakeString("myInventoryItems");
-		//vars.Helper["Temp"] = sav.MakeList("tempInventory");
-		//vars.Helper["CurInv"] = invm.Make<bool>("currentInventory");
-		//vars.Helper["Box"] = invm.MakeString("possibleItems");
 		
         return true;
     });
@@ -50,11 +44,6 @@ update
 {
     current.activeScene = vars.Helper.Scenes.Active.Name == null ? current.activeScene : vars.Helper.Scenes.Active.Name;			//creates a function that tracks the games active Scene name
     current.loadingScene = vars.Helper.Scenes.Loaded[0].Name == null ? current.loadingScene : vars.Helper.Scenes.Loaded[0].Name;	//creates a function that tracks the games currently loading Scene name
-
-    if(current.activeScene != old.activeScene) vars.Log("active: Old: \"" + old.activeScene + "\", Current: \"" + current.activeScene + "\"");			//Prints when a new scene becomes active
-    if(current.loadingScene != old.loadingScene) vars.Log("loading: Old: \"" + old.loadingScene + "\", Current: \"" + current.loadingScene + "\"");		//Prints when a new scene starts loading
-	//vars.Log(current.Inv);
-	//vars.Log(current.Box);
 }
 
 onStart 
