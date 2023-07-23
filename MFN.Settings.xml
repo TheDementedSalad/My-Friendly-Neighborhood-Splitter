@@ -1,0 +1,29 @@
+<Settings>
+    <Setting Id="Door"  Label="Door Splitter - Splits On EVERY Door" />
+    <Setting Id="DoorC" Label="Custom Door Splitter - Only Splits Once On Area">
+        <Setting Id="Pearl's Rolodexer Room" Label="Rolodexer Room (Handgun Room)" />
+        <Setting Id="Pearl's Sound Stage" Label="Sound Stage (Town Square)" />
+        <Setting Id="Pearl's Sound Stage-MainBuildingInside" Label="Stage Main Building (Middle Building)" />
+        <Setting Id="RaysMainAtrium" Label="Underground Atrium" />
+        <Setting Id="RaysFixinsRoom" Label="Fixins Room (Power Source)" />
+        <Setting Id="Ray'sDocks4" Label="Dock 4" />
+        <Setting Id="Ray'sDocks2" Label="Dock 2 (Boltcutters)" />
+        <Setting Id="GobblesOfficesEntrance" Label="Office Entrance" />
+        <Setting Id="Gobbles Projection Room2" Label="Theater Room" />
+        <Setting Id="Gobbles Studio" Label="Studio (Game Piece)" />
+        <Setting Id="Gobbles Bare Room Offices" Label="Bare Room Office (Angry Mask)" />
+        <Setting Id="Gobbles Art Storage" Label="Art Storage" />
+        <Setting Id="Gobbles Elevator Maintenance" Label="Elevator Maintenence Room" />
+        <Setting Id="GobblesOfficesEntrance-CEOOffice" Label="CEO Office" />
+        <Setting Id="Exterior-HedgeMaze" Label="Garden Maze" />
+        <Setting Id="Exterior-GreenhouseInterior" Label="Greenhouse Interior" />
+        <Setting Id="Gobbles Sound Studio" Label="Sound Studio" />
+        <Setting Id="RaysFilmArchives" Label="Film Archives" />
+        <Setting Id="PenthouseEntrance" Label="Penthouse Entrance" />
+        <Setting Id="Elmer's Two Side Room" Label="Hexagonal Key Room" />
+        <Setting Id="PenthouseBackHall2" Label="Penthouse Art Hall" />
+        <Setting Id="Exterior-Antenna" Label="Roof" />
+        <Setting Id="Unfriendly Neighborhood Proper" Label="Unfriendly Neighbourhood Arena" />
+    </Setting>
+    <Setting Id="Final" Label="Final Split - Always Active" State="true" />
+</Settings>

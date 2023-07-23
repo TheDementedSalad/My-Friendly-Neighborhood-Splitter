@@ -12,61 +12,57 @@ state("My Friendly Neighborhood")
 
 startup
 {
-    Assembly.Load(File.ReadAllBytes("Components/asl-help")).CreateInstance("Unity");
-    vars.Helper.GameName = "My Friendly Neighborhood";
-    vars.Helper.LoadSceneManager = true;
-    vars.Helper.AlertLoadless();
+	Assembly.Load(File.ReadAllBytes("Components/asl-help")).CreateInstance("Unity");
+	vars.Helper.GameName = "My Friendly Neighborhood";
+	vars.Helper.LoadSceneManager = true;
+	vars.Helper.AlertLoadless();
+	vars.Helper.Settings.CreateFromXml("Components/MFN.Settings.xml");
 	
-	vars.DoorSkips = new List<string>()
-	{"MainMenu","BackToMenuScene"};
-	
-	vars.DoorCSplits = new List<string>()
-	{"Pearl's Rolodexer Room","Pearl's Sound Stage","Pearl's Sound Stage-MainBuildingInside","RaysMainAtrium","RaysFixinsRoom","Ray'sDocks4","Ray'sDocks2","GobblesOfficesEntrance","Gobbles Projection Room2","Gobbles Studio","Gobbles Bare Room Offices","Gobbles Art Storage","Gobbles Elevator Maintenance","GobblesOfficesEntrance-CEOOffice","Exterior-HedgeMaze","Exterior-GreenhouseInterior","Gobbles Sound Studio","RaysFilmArchives","PenthouseEntrance","Elmer's Two Side Room","PenthouseBackHall2","Exterior-Antenna","Unfriendly Neighborhood Proper"};
-	
-	vars.DoorCSettings = new List<string>()
-	{"Rolodexer Room (Handgun Room)","Sound Stage (Town Square)","Stage Main Building (Middle Building)","Underground Atrium","Fixins Room (Power Source)","Dock 4","Dock 2 (Boltcutters)","Office Entrance","Theater Room","Studio (Game Piece)","Bare Room Office (Angry Mask)","Art Storage","Elevator Maintenence Room","CEO Office","Garden Maze","Greenhouse Interior","Sound Studio","Film Archives","Penthouse Entrance","Hexagonal Key Room","Penthouse Art Hall","Roof","Unfriendly Neighbourhood Arena"};
-	
-	settings.Add("Door", false, "Door Splitter - Splits On EVERY Door");
-	
-	settings.Add("DoorC", false, "Custom Door Splitter - Only Splits Once On Area");
-	settings.CurrentDefaultParent = "DoorC";
-	for(int i = 0; i < 23; i++){
-        	settings.Add("" + vars.DoorCSplits[i].ToString(), false, "" + vars.DoorCSettings[i].ToString());
-    	}
-		settings.CurrentDefaultParent = null;
-	
-	settings.Add("Final", true, "Final Split - Always Active");
+	vars.DoorSkips = new List<string>() {"MainMenu", "BackToMenuScene"};
 }
 
 init
 {
-    vars.Helper.TryLoad = (Func<dynamic, bool>)(mono => 
-    {
-	var inv = mono["InventoryInWorld"]; 						
-	var invm = mono["InventoryManager"]; 
-	var sav = mono["SaveData"];
-        var spd = mono["SpeedrunData"];						//Information about the games Speedrun mode
-                
-        vars.Helper["Time"] = spd.Make<float>("timer");				//The games speedrun timer as a float
+	vars.Helper.TryLoad = (Func<dynamic, bool>)(mono => 
+	{
+		var inv = mono["InventoryInWorld"]; 						
+		var invm = mono["InventoryManager"]; 
+		var sav = mono["SaveData"];
+		var spd = mono["SpeedrunData"];						//Information about the games Speedrun mode
+				
+		vars.Helper["Time"] = spd.Make<float>("timer");				//The games speedrun timer as a float
 
-        return true; 
-    });
+		return true; 
+	});
 
-    vars.completedSplits = new List<string>();
+	vars.completedSplits = new List<string>();
+	// this function is a helper for checking splits that may or may not exist in settings,
+	// and if we want to do them only once
+	vars.CheckSplit = (Func<string, bool>)(key => {
+		// if the split doesn't exist, or it's off, or we've done it already
+		if (!settings.ContainsKey(key)
+		  || !settings[key]
+		  || vars.completedSplits.Contains(key)
+		) {
+			return false;
+		}
+
+		vars.completedSplits.Add(key);
+		vars.Log("Completed: " + key);
+		return true;
+	});
 }
 
 update
 {
-    current.activeScene = vars.Helper.Scenes.Active.Name == null ? current.activeScene : vars.Helper.Scenes.Active.Name;		//creates a function that tracks the games active Scene name
-    current.loadingScene = vars.Helper.Scenes.Loaded[0].Name == null ? current.loadingScene : vars.Helper.Scenes.Loaded[0].Name;	//creates a function that tracks the games currently loading Scene name
-	
-    if(timer.CurrentPhase == TimerPhase.NotRunning){
-	vars.completedSplits.Clear();
-    }
+	current.activeScene = vars.Helper.Scenes.Active.Name == null ? current.activeScene : vars.Helper.Scenes.Active.Name;		//creates a function that tracks the games active Scene name
+	current.loadingScene = vars.Helper.Scenes.Loaded[0].Name == null ? current.loadingScene : vars.Helper.Scenes.Loaded[0].Name;	//creates a function that tracks the games currently loading Scene name
 }
 
 onStart 
-{}
+{
+	vars.completedSplits.Clear();
+}
 
 onSplit
 {}
@@ -76,42 +72,38 @@ onReset
 
 start
 {
-     return current.Time > 0f && old.Time == 0f;
+	 return current.Time > 0f && old.Time == 0f;
 }
 
 split
-{    
-	if(settings["Door"]){
-		if(current.activeScene != old.activeScene && !vars.DoorSkips.Contains(current.activeScene) && !vars.DoorSkips.Contains(old.activeScene)){
+{
+	if (old.loadingScene != current.loadingScene)
+	{
+		if (settings["Door"] && !vars.DoorSkips.Contains(current.loadingScene) && !vars.DoorSkips.Contains(old.loadingScene))
+		{
 			return true;
 		}
-	}
-	
-	if(settings["DoorC"])
+
+		if (settings["DoorC"] && vars.CheckSplit(current.loadingScene))
 		{
-			for(int i = 0; i < 23; i++)
-			{
-				if(vars.DoorCSplits.Contains(current.activeScene) && !vars.completedSplits.Contains(current.activeScene) && settings[current.activeScene.ToString()])
-				{
-					vars.completedSplits.Add(current.activeScene);
-					return true;
-				}
-			}
+			return true;
 		}
-	
-	if(current.activeScene == "EndingA" && old.activeScene != "EndingA" || current.activeScene == "EndingB" && old.activeScene != "EndingB"){
-		return true;
+
+		if (current.loadingScene == "EndingA" || current.loadingScene == "EndingB")
+		{
+			return true;
+		}
 	}
 }
 
 gameTime
 {
-    return TimeSpan.FromSeconds(current.Time);
+	return TimeSpan.FromSeconds(current.Time);
 }
 
 isLoading
 {
-    return true;
+	return true;
 }
 
 reset
