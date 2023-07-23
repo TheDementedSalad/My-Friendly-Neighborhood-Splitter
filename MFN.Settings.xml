@@ -1,3 +1,29 @@
 <Settings>
-    <!-- TODO implement -->
+    <Setting Id="Door"  Label="Door Splitter - Splits On EVERY Door" State="false" />
+    <Setting Id="DoorC" Label="Custom Door Splitter - Only Splits Once On Area">
+        <Setting Id="Pearl's Rolodexer Room" Label="Rolodexer Room (Handgun Room)" State="false" />
+        <Setting Id="Pearl's Sound Stage" Label="Sound Stage (Town Square)" State="false" />
+        <Setting Id="Pearl's Sound Stage-MainBuildingInside" Label="Stage Main Building (Middle Building)" State="false" />
+        <Setting Id="RaysMainAtrium" Label="Underground Atrium" State="false" />
+        <Setting Id="RaysFixinsRoom" Label="Fixins Room (Power Source)" State="false" />
+        <Setting Id="Ray'sDocks4" Label="Dock 4" State="false" />
+        <Setting Id="Ray'sDocks2" Label="Dock 2 (Boltcutters)" State="false" />
+        <Setting Id="GobblesOfficesEntrance" Label="Office Entrance" State="false" />
+        <Setting Id="Gobbles Projection Room2" Label="Theater Room" State="false" />
+        <Setting Id="Gobbles Studio" Label="Studio (Game Piece)" State="false" />
+        <Setting Id="Gobbles Bare Room Offices" Label="Bare Room Office (Angry Mask)" State="false" />
+        <Setting Id="Gobbles Art Storage" Label="Art Storage" State="false" />
+        <Setting Id="Gobbles Elevator Maintenance" Label="Elevator Maintenence Room" State="false" />
+        <Setting Id="GobblesOfficesEntrance-CEOOffice" Label="CEO Office" State="false" />
+        <Setting Id="Exterior-HedgeMaze" Label="Garden Maze" State="false" />
+        <Setting Id="Exterior-GreenhouseInterior" Label="Greenhouse Interior" State="false" />
+        <Setting Id="Gobbles Sound Studio" Label="Sound Studio" State="false" />
+        <Setting Id="RaysFilmArchives" Label="Film Archives" State="false" />
+        <Setting Id="PenthouseEntrance" Label="Penthouse Entrance" State="false" />
+        <Setting Id="Elmer's Two Side Room" Label="Hexagonal Key Room" State="false" />
+        <Setting Id="PenthouseBackHall2" Label="Penthouse Art Hall" State="false" />
+        <Setting Id="Exterior-Antenna" Label="Roof" State="false" />
+        <Setting Id="Unfriendly Neighborhood Proper" Label="Unfriendly Neighbourhood Arena" State="false" />
+    </Setting>
+    <Setting Id="Final" Label="Final Split - Always Active" State="true" />
 </Settings>
