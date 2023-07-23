@@ -55,8 +55,8 @@ init
 
 update
 {
-	current.activeScene = vars.Helper.Scenes.Active.Name == null ? current.activeScene : vars.Helper.Scenes.Active.Name;		//creates a function that tracks the games active Scene name
-	current.loadingScene = vars.Helper.Scenes.Loaded[0].Name == null ? current.loadingScene : vars.Helper.Scenes.Loaded[0].Name;	//creates a function that tracks the games currently loading Scene name
+	current.activeScene = vars.Helper.Scenes.Active.Name ?? current.activeScene;
+	current.loadingScene = vars.Helper.Scenes.Loaded[0].Name ?? current.loadingScene;
 }
 
 onStart 
