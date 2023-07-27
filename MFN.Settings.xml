@@ -7,6 +7,7 @@
         <Setting Id="RaysMainAtrium" Label="Underground Atrium" State="false" />
         <Setting Id="RaysFixinsRoom" Label="Fixins Room (Power Source)" State="false" />
         <Setting Id="Ray'sDocks4" Label="Dock 4" State="false" />
+        <Setting Id="Pearl's Pirate Cove" Label="Pirate Cove" State="false" />
         <Setting Id="Ray'sDocks2" Label="Dock 2 (Boltcutters)" State="false" />
         <Setting Id="GobblesOfficesEntrance" Label="Office Entrance" State="false" />
         <Setting Id="Gobbles Projection Room2" Label="Theater Room" State="false" />
@@ -17,6 +18,7 @@
         <Setting Id="GobblesOfficesEntrance-CEOOffice" Label="CEO Office" State="false" />
         <Setting Id="Exterior-HedgeMaze" Label="Garden Maze" State="false" />
         <Setting Id="Exterior-GreenhouseInterior" Label="Greenhouse Interior" State="false" />
+        <Setting Id="Aviary_new" Label="Aviary" State="false" />
         <Setting Id="Gobbles Sound Studio" Label="Sound Studio" State="false" />
         <Setting Id="RaysFilmArchives" Label="Film Archives" State="false" />
         <Setting Id="PenthouseEntrance" Label="Penthouse Entrance" State="false" />
