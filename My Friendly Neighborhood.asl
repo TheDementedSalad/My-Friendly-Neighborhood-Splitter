@@ -89,7 +89,7 @@ split
 			return true;
 		}
 
-		if (current.activeScene == "EndingA" || current.activeScene == "EndingB || current.activeScene == "EndingC || current.activeScene == "EndingD")
+		if (current.activeScene == "EndingA" || current.activeScene == "EndingB" || current.activeScene == "EndingC" || current.activeScene == "EndingD")
 		{
 			return true;
 		}
