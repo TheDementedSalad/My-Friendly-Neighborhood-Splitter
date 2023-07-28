@@ -77,19 +77,19 @@ start
 
 split
 {
-	if (old.activeScene != current.activeScene)
+	if (old.loadingScene != current.loadingScene)
 	{
-		if (settings["Door"] && !vars.DoorSkips.Contains(current.activeScene) && !vars.DoorSkips.Contains(old.activeScene))
+		if (settings["Door"] && !vars.DoorSkips.Contains(current.loadingScene) && !vars.DoorSkips.Contains(old.loadingScene))
 		{
 			return true;
 		}
 
-		if (settings["DoorC"] && vars.CheckSplit(current.activeScene))
+		if (settings["DoorC"] && vars.CheckSplit(current.loadingScene))
 		{
 			return true;
 		}
 
-		if (current.activeScene == "EndingA" || current.activeScene == "EndingB" || current.activeScene == "EndingC" || current.activeScene == "EndingD")
+		if (current.loadingScene == "EndingA" || current.loadingScene == "EndingB" || current.loadingScene == "EndingC" || current.loadingScene == "EndingD")
 		{
 			return true;
 		}
