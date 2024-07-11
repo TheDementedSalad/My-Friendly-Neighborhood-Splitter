@@ -12,7 +12,7 @@
         <Setting Id="GobblesOfficesEntrance" Label="Office Entrance" State="false" />
         <Setting Id="Gobbles Projection Room2" Label="Theater Room" State="false" />
         <Setting Id="Gobbles Studio" Label="Studio (Game Piece)" State="false" />
-        <Setting Id="Gobbles Bare Room Offices" Label="Bare Room Office (Angry Mask)" State="false" />
+        <Setting Id="Gobbles Bare Room Offices" Label="Bare Room Office (Angry Mask OR Room Opposite)" State="false" />
         <Setting Id="Gobbles Art Storage" Label="Art Storage" State="false" />
         <Setting Id="Gobbles Elevator Maintenance" Label="Elevator Maintenence Room" State="false" />
         <Setting Id="GobblesOfficesEntrance-CEOOffice" Label="CEO Office" State="false" />
